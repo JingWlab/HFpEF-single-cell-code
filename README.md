@@ -1,19 +1,19 @@
-#Single-Cell RNA Sequencing Analysis of Mouse Hearts in HFpEF and HFrEF
+Single-Cell RNA Sequencing Analysis of Mouse Hearts in HFpEF and HFrEF
 
 This repository contains analysis code for single-cell RNA sequencing (scRNA-seq) data from mouse heart samples with heart failure with preserved ejection fraction (HFpEF) and heart failure with reduced ejection fraction (HFrEF).
 
-#Data
+Data
 
 HFrEF: Gene Expression Omnibus (GEO)——accession number: GSE120064
+
 HFpEF: The data are deposited in the Genome Sequence Archive in the BIG Data Center under the accession code CAR019419.
 
-#Pipeline
-
+Pipeline
 1. HFpEF and HFrEF data quality control and filtering
 Cells were included at a minimum threshold of 500 detected genes and 10,000 UMIs per cell; unique read alignment rate > 50%; and mitochondrial read percentage < 65% (mean + 1.5 s.d.). To mitigate the potential impact of mitochondrial genes on downstream analysis, reads mapped to 37 mitochondrial genes (gene symbols starting with "Mt-") were excluded. Filtered gene–barcode matrices were normalized with the 'SCTransform' function of Seurat, and the top 2,000 variable genes were identified. Gene expression matrices were scaled and centered using the 'ScaleData' function. See details in 01.Quality control and filtering.
 
 2. Integration of HFpEF and HFrEF Datasets
-The processed data from both HFpEF and HFrEF studies were normalized using the logarithm-transformation-based normalization by the 'NormalizeData' function with the scale factor of 10,000. Top 2,000 variable features were selected based on the 'SelectIntegrationFeatures' function. A set of anchors between HFpEF and HFrEF studies was identified based on the top 2,000 variable features and neighbor-based algorithm by ‘FindIntegrationAnchors’ function. Finally, the pre-computed anchors were utilized to integrate HFpEF and HFrEF studies using the 'IntegrateData' function.See details in 02.Integration of Datasets.
+The processed data from both HFpEF and HFrEF studies were normalized using the logarithm-transformation-based normalization by the 'NormalizeData' function with the scale factor of 10,000. Top 2,000 variable features were selected based on the 'SelectIntegrationFeatures' function. A set of anchors between HFpEF and HFrEF studies was identified based on the top 2,000 variable features and neighbor-based algorithm by ‘FindIntegrationAnchors’ function. Finally, the pre-computed anchors were utilized to integrate HFpEF and HFrEF studies using the 'IntegrateData' function.See details in 02. Integration of Datasets.
 
 
 3. Clustering and cell type annotation
